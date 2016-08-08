@@ -372,6 +372,16 @@ class Tree {
      * @default
      */
     this.showBranchLengthLabels = false;
+
+    /**
+     * If displaying {@link this.showBranchLengthLabels}, this can be set to true to hide branch length that have a '0'
+     * value
+     *
+     * @type {boolean}
+     * @default
+     */
+    this.hideBranchLengthZeros = false;
+
     /**
      * @type boolean
      * @default

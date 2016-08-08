@@ -300,7 +300,8 @@ class Branch {
   }
 
   /**
-   * The canvas {@link https://developer.mozilla.org/en/docs/Web/API/CanvasRenderingContext2D drawing context} of the parent tree.
+   * The canvas {@link https://developer.mozilla.org/en/docs/Web/API/CanvasRenderingContext2D drawing context} of the
+   * parent tree.
    *
    * @type CanvasRenderingContext2D
    */
@@ -491,6 +492,19 @@ class Branch {
    * @method
    */
   drawBranchLabels() {
+    /**
+     * Test to see if the Branch Length Label should be drawn on the {@lin Branch}
+     * @method
+     * @returns {boolean}
+     */
+    function shouldDrawBranchLengthLabel() {
+      if (this.tree.showBranchLengthLabels) {
+        if (this.tree.hideBranchLengthZeros) {
+          return this.branchLength > 0;
+        }
+        return true;
+      }
+    }
     this.canvas.save();
     const labelStyle = this.internalLabelStyle || this.tree.internalLabelStyle;
     this.canvas.fillStyle = labelStyle.colour;
@@ -507,7 +521,7 @@ class Branch {
       this.centery :
       (this.starty + this.centery) / 2;
 
-    if (this.tree.showBranchLengthLabels) {
+    if (shouldDrawBranchLengthLabel.call(this)) {
       this.canvas.fillText(this.branchLength.toFixed(2), x, y + em);
     }
 
