@@ -80,6 +80,17 @@ zoomCheckbox.addEventListener('change', (e) => {
 zoomLabel.appendChild(zoomCheckbox);
 document.body.appendChild(zoomLabel);
 
+const hideZerosLABEL = document.createElement('label');
+hideZerosLABEL.appendChild(document.createTextNode('Hide Branch Length Zeros'));
+const hideZerosCheckbox = document.createElement('input');
+hideZerosCheckbox.type = 'checkbox';
+hideZerosCheckbox.addEventListener('change', (e) => {
+  tree.hideBranchLengthZeros = e.target.checked;
+  tree.draw();
+});
+hideZerosLABEL.appendChild(hideZerosCheckbox);
+document.body.appendChild(hideZerosLABEL);
+
 
 tree.on('error', function (event) { throw event.error; });
 
